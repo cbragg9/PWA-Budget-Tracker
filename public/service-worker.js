@@ -35,7 +35,8 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
-  if (event.request.url.startsWith(self.location.origin)) {
+  if (event.request.url.includes("/api")) {
+    console.log("service worker");
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
         if (cachedResponse) {
